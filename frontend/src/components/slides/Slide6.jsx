@@ -47,11 +47,17 @@ export default function Slide6() {
   }
 
   const fetchExam = async () => {
-    try {
-      const res = await fetch('http://localhost:5000/api/student/exam')
-      const data = await res.json()
-      setExamData(data)
-    } catch(e) {}
+    // Serverless Mock Exam Data
+    await new Promise(resolve => setTimeout(resolve, 500))
+    setExamData({ 
+      title: 'Cybersecurity Finals 2026', 
+      questions: [{ 
+        id: 1, 
+        text: 'Which architectural model assumes no implicit trust granted to assets or user accounts based solely on their physical or network location?', 
+        options: ['Perimeter Defense Model', 'Zero Trust Architecture', 'Castle-and-Moat Model'], 
+        correct: 1 
+      }] 
+    })
   }
 
   const toggleDemoFullscreen = () => {
