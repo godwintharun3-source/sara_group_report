@@ -19,13 +19,21 @@ export default function Slide6() {
 
   const handleStudentLogin = async (e) => {
     e.preventDefault()
+    const username = e.target.username.value
+    const password = e.target.password.value
     // Simulated Backend Call
     try {
-      const res = await fetch('http://localhost:5001/api/auth/student', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: 'student', password: 'zero2026' })
-      })
-      if (res.ok) {
+      // Serverless Simulation (replaces localhost backend)
+      await new Promise(resolve => setTimeout(resolve, 800))
+      
+      let resData;
+      if (username === 'student' && password === 'zero2026') {
+        resData = { success: true, token: 'demo-token-123', role: 'student' }
+      } else {
+        resData = { success: false, message: 'Invalid credentials' }
+      }
+
+      if (resData.success) {
         setStudentState('dashboard')
         fetchExam()
       } else {

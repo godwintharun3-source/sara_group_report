@@ -30,13 +30,19 @@ export default function Slide7() {
       setLogs(prev => [...prev, `[PIPELINE] Analyzing: ${pipelineSteps[i]}...`])
     }
 
-    // Fetch result from backend simulator
+    // Serverless Simulation (replaces localhost backend)
     try {
-      const res = await fetch('http://localhost:5001/api/auth/simulate', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ scenario: scenarioId })
-      })
-      const data = await res.json()
+      await new Promise(resolve => setTimeout(resolve, 600))
+      
+      let data;
+      switch(scenarioId) {
+        case 'A': data = { riskScore: 10, decision: '🟢 ACCESS GRANTED', details: 'Normal Login: All checks passed.' }; break;
+        case 'B': data = { riskScore: 65, decision: '🟡 RE-AUTHENTICATION REQUIRED', details: 'Suspicious Login: New device detected.' }; break;
+        case 'C': data = { riskScore: 85, decision: '🔴 ACCESS DENIED', details: 'Least Privilege Violation: Attempted access to unreleased paper.' }; break;
+        case 'D': data = { riskScore: 95, decision: '🔴 SESSION BLOCKED', details: 'Possible Compromise: Unusual location, multiple failed attempts.' }; break;
+        default: data = { riskScore: 0, decision: 'ERROR', details: 'Unknown scenario' }
+      }
+
       setSimulationState(data)
       setLogs(prev => [...prev, `[DECISION] ${data.decision}`, `[DETAILS] ${data.details}`])
     } catch(e) {
