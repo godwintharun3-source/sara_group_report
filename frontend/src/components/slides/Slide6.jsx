@@ -98,11 +98,11 @@ export default function Slide6() {
                   <h3 className="text-xl font-bold text-center mb-6 text-white">Student Login</h3>
                   <div className="mb-4">
                     <label className="text-xs text-slate-400 block mb-1">Username (student)</label>
-                    <div className="flex bg-slate-950 border border-slate-800 rounded p-2"><User size={16} className="text-cyan-500 mr-2"/><input required defaultValue="student" className="bg-transparent text-white w-full outline-none text-sm"/></div>
+                    <div className="flex bg-slate-950 border border-slate-800 rounded p-2"><User size={16} className="text-cyan-500 mr-2"/><input required name="username" defaultValue="student" className="bg-transparent text-white w-full outline-none text-sm"/></div>
                   </div>
                   <div className="mb-6">
                     <label className="text-xs text-slate-400 block mb-1">Password (zero2026)</label>
-                    <div className="flex bg-slate-950 border border-slate-800 rounded p-2"><Key size={16} className="text-cyan-500 mr-2"/><input required type="password" defaultValue="zero2026" className="bg-transparent text-white w-full outline-none text-sm"/></div>
+                    <div className="flex bg-slate-950 border border-slate-800 rounded p-2"><Key size={16} className="text-cyan-500 mr-2"/><input required name="password" type="password" defaultValue="zero2026" className="bg-transparent text-white w-full outline-none text-sm"/></div>
                   </div>
                   <button type="submit" className="w-full bg-cyan-600 hover:bg-cyan-500 text-white py-2 rounded font-bold transition">Login & MFA Verify</button>
                 </motion.form>
